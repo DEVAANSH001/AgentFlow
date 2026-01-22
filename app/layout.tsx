@@ -4,6 +4,7 @@ import "./globals.css";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import Provider from "./provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -28,6 +29,7 @@ export default function RootLayout({
           <ConvexClientProvider>
             <Provider>
               <div suppressHydrationWarning>{children}</div>{" "}
+              <Toaster/>
             </Provider>
           </ConvexClientProvider>
         </body>
