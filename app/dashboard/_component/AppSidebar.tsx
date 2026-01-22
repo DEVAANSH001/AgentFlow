@@ -15,12 +15,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import {
-  Database,
   Gem,
-  Headphones,
-  LayoutDashboard,
-  User,
-  WalletCards,
 } from "lucide-react";
 import { useContext } from "react";
 import { UserDetails } from "@/context/UserData";
@@ -28,32 +23,13 @@ import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 
 const MenuOptions = [
-  {
-    title: "Dashboard",
-    url: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "AI Agents",
-    url: "#",
-    icon: Headphones,
-  },
-  {
-    title: "Data",
-    url: "#",
-    icon: Database,
-  },
-  {
-    title: "Pricing",
-    url: "#",
-    icon: WalletCards,
-  },
-  {
-    title: "Profile",
-    url: "#",
-    icon: User,
-  },
-];
+    {name: 'Dashboard',url:'/dashboard', icon: '/dashboard.png'},
+    {name: 'Data',url:'#', icon: '/database.png'},
+    {name: 'Agent',url:'#', icon: '/ai.png'},
+    {name: 'Profile',url:'#', icon: '/profile.png'}
+  ]
+
+
 
 export function AppSidebar() {
   //check for sidebar open or not
@@ -67,7 +43,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
           <Image src={"/logo.svg"} alt="Logo" width={35} height={35} />
-          {open && <h2 className="text-lg font-bold">AgentCanvas</h2>}
+          {open && <h2 className="text-lg font-bold">AgentFlow</h2>}
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -79,8 +55,8 @@ export function AppSidebar() {
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton asChild size={open ? "lg" : "default"} isActive={path===menu.url}>
                     <Link href={menu.url}>
-                      <menu.icon />
-                      <span>{menu.title}</span>
+                      <Image src={menu.icon} alt={menu.name} width={20} height={20} />
+                      <span>{menu.name}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
