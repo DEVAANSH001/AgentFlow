@@ -4,6 +4,7 @@ import { useUser } from '@clerk/nextjs';
 import  {api }from '../convex/_generated/api';
 import { useMutation } from 'convex/react';
 import { UserDetails } from '@/context/UserData';
+import { WorkflowContext } from '@/context/WorkflowContext';
 
 function Provider({
     children,
@@ -14,6 +15,15 @@ function Provider({
     const { user } = useUser();
     const createUser = useMutation(api.user.CreateNewUser)
   const [userDetails, setUserDetails] = useState<any>(null);
+  const [addedNode,setAddedNode] = useState(
+    [{
+      id:'start',
+      position:{x:0,y:0},
+      data:{label:'Start'},
+      type:'StartNodes'
+    }]
+  )
+  const [nodeEdges,setNodeEdges] = useState([])
 
   useEffect(() => {
     const CreateAndGetUser = async () => {
@@ -40,7 +50,9 @@ function Provider({
 //   console.log("User Details in Provider:", userDetails);
   return (
     <UserDetails.Provider value={{ userDetails, setUserDetails }}>
-      <div>{children}</div>
+      <WorkflowContext.Provider value={{addedNode,setAddedNode,nodeEdges,setNodeEdges}}>
+        <div>{children}</div>
+      </WorkflowContext.Provider>
     </UserDetails.Provider>
   )
 }

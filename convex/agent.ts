@@ -31,3 +31,31 @@ export const GetUserAgents = query({
         return result
     }
 })
+
+export const GetAgnetById = query({
+    args: {
+        agentId: v.string()
+    },
+    handler: async (ctx, args) => {
+        const result = await ctx.db.query('AgentTable')
+            .filter(q => q.eq(q.field('agentId'), args.agentId))
+            .order('desc')
+            .collect()
+        return result[0];
+    }
+})
+export const UpdateDetails = mutation({
+    args:{
+        id:v.id('AgentTable'),
+        nodes:v.any(),
+        edges:v.any()
+    },
+    handler:async(ctx,args)=>{
+        await ctx.db.patch(args.id,{
+            edge:args.edges,
+            node:args.nodes
+        })
+    }
+    
+
+})
