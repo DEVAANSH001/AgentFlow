@@ -1,9 +1,14 @@
 import React from 'react'
+import CreateAgentSection from './_component/CreateAgentSection'
+import AgentTab from './_component/AgentTab'
 
-const page = () => {
+function Dashboard() {
   return (
-    <div>page</div>
+    <>
+    <CreateAgentSection/>
+    <AgentTab/>
+    </>
   )
 }
 
-export default page
+export default Dashboard

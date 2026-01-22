@@ -5,6 +5,7 @@ function Dashboardlayout({children }: {children: React.ReactNode}) {
   return (
     <div>
         <DashboardProvider>
+          
         {children}
         </DashboardProvider>
         </div>
