@@ -7,6 +7,10 @@ import '@xyflow/react/dist/style.css';
 import StartNodes from '../_customNodes/StartNodes';
 import AgentNode from '../_customNodes/AgentNode';
 import EndNode from '../_customNodes/EndNodes';
+import IfElseNode from '../_customNodes/IfElseNode';
+import WhileNode from '../_customNodes/WhileNode';
+import ApprovalNode from '../_customNodes/ApprovalNode';
+import ApiNode from '../_customNodes/ApiNode';
 import AgentToolsPanel from '../_components/AgentToolsPanel';
 import { WorkflowContext } from '@/context/WorkflowContext';
 import { useConvex } from 'convex/react';
@@ -18,7 +22,11 @@ import { toast } from 'sonner';
 const nodeTypes = {
   StartNodes: StartNodes,
   AgentNode: AgentNode,
-  EndNodes: EndNode,
+  EndNode: EndNode,
+  IfElseNode: IfElseNode,
+  WhileNode: WhileNode,
+  ApprovalNode: ApprovalNode,
+  ApiNode: ApiNode,
 }
 
 function AgentBuilder() {
