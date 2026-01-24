@@ -18,6 +18,9 @@ import { api } from '@/convex/_generated/api';
 import { Agent } from '@/types/AgentType';
 import { useMutation } from 'convex/react';
 import { toast } from 'sonner';
+import SettingPanel from '../_components/SettingPanel';
+import { useOnSelectionChange, OnSelectionChangeParams } from '@xyflow/react';
+import { set } from 'date-fns';
 
 const nodeTypes = {
   StartNodes: StartNodes,
@@ -30,7 +33,7 @@ const nodeTypes = {
 }
 
 function AgentBuilder() {
-  const {addedNode, setAddedNode, nodeEdges, setNodeEdges} = useContext(WorkflowContext);
+  const {addedNode, setAddedNode, nodeEdges, setNodeEdges,selectedNode, setSelectedNode} = useContext(WorkflowContext);
   
   const {agentId} = useParams();
   const UpdateAgentDetail = useMutation(api.agent.UpdateDetails);
@@ -174,6 +177,14 @@ function AgentBuilder() {
     [nodeEdges, setNodeEdges],
   );
 
+  const onNodeSelect = useCallback(({nodes,edges}:OnSelectionChangeParams)=>{
+    setSelectedNode(nodes[0]);
+    console.log("Selected Node:",nodes[0]);
+  },[selectedNode])
+  useOnSelectionChange({
+    onChange:onNodeSelect
+  })
+
   return (
     <div>
       <Header agentDetails={agentDetails}/>
@@ -194,7 +205,7 @@ function AgentBuilder() {
             <AgentToolsPanel/>
           </Panel>
           <Panel position='top-right'>
-            Settings
+            <SettingPanel/>
           </Panel>
           <Panel position='top-center'>
             <div style={{ 
