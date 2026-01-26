@@ -22,7 +22,7 @@ import SettingPanel from '../_components/SettingPanel';
 import { useOnSelectionChange, OnSelectionChangeParams } from '@xyflow/react';
 import { set } from 'date-fns';
 
-const nodeTypes = {
+export const nodeTypes = {
   StartNodes: StartNodes,
   AgentNode: AgentNode,
   EndNode: EndNode,
