@@ -6,6 +6,7 @@ import IfElseSetting from './_NodeSettings/IfElseSetting';
 import WhileSetting from './_NodeSettings/WhileSetting';
 import ApprovalSetting from './_NodeSettings/ApprovalSetting';
 import ApiAgentSettings from './_NodeSettings/ApiAgentSettings';
+import StartNode from './_NodeSettings/StartNode';
 
 const SettingPanel = () => {
     const {selectedNode, setAddedNode} = useContext(WorkflowContext); 
@@ -14,12 +15,12 @@ const SettingPanel = () => {
         setAddedNode((prevNodes: any) => {
             return prevNodes.map((node: any) => {
                 if (node.id === selectedNode.id) {
-                    // Update only the data, preserve everything else (especially position)
+                    
                     return {
                         ...node,
                         data: {
                             ...node.data,
-                            // Only update label for AgentNode
+                           
                             label: selectedNode?.type === 'AgentNode' 
                                 ? (formData.name || node.data.label) 
                                 : node.data.label,
@@ -58,6 +59,7 @@ const SettingPanel = () => {
                 selectedNode={selectedNode}
                 updatedFormData={(value: any) => onUpdateNodeData(value)}
             />}
+            {selectedNode?.id == 'start' && <StartNode/>}
         </div>
     )
 }
