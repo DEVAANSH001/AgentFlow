@@ -8,4 +8,5 @@ export type Agent = {
   node?: any;
   edge?: any;
   userId: string;
+  agentToolConfig?: any;
 }
