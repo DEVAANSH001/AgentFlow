@@ -6,6 +6,7 @@ import {
   ThumbsUp,
   Webhook,
   MousePointer2,
+  Play,
 } from 'lucide-react';
 import { WorkflowContext } from '@/context/WorkflowContext';
 import { useContext } from 'react';
@@ -18,6 +19,7 @@ const AgentTools = [
     id: 'agent',
     type: 'AgentNode',
   },
+  
   {
     name: 'End',
     icon: Square,

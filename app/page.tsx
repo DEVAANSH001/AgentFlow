@@ -36,7 +36,7 @@ const SpotlightCard = ({ children, className = "" }: { children: React.ReactNode
   return (
     <div
       className={cn(
-        "group relative border border-white/10 bg-zinc-900/50 overflow-hidden rounded-xl",
+        "group relative border border-gray-200 bg-white overflow-hidden rounded-xl shadow-sm hover:shadow-md transition-shadow",
         className
       )}
       onMouseMove={handleMouseMove}
@@ -47,7 +47,7 @@ const SpotlightCard = ({ children, className = "" }: { children: React.ReactNode
           background: useMotionTemplate`
             radial-gradient(
               650px circle at ${mouseX}px ${mouseY}px,
-              rgba(59, 130, 246, 0.15),
+              rgba(59, 130, 246, 0.08),
               transparent 80%
             )
           `,
@@ -67,27 +67,27 @@ const LandingPage = () => {
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95])
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-blue-500/30 font-sans">
+    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden selection:bg-blue-500/20 font-sans">
       
       
-      <div className="fixed inset-0 z-0 h-full w-full bg-[#050505] bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]">
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-500 opacity-20 blur-[100px]"></div>
+      <div className="fixed inset-0 z-0 h-full w-full bg-white bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:24px_24px]">
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-500 opacity-10 blur-[100px]"></div>
       </div>
 
      
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#050505]/60 backdrop-blur-xl">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-xl shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
            
-            <span className="text-lg font-bold ">AgentFlow</span>
+            <span className="text-lg font-bold text-gray-900">AgentFlow</span>
           </Link>
 
           <div className="flex items-center gap-4 ml-auto">
             <div className="hidden md:flex items-center gap-4">
               <SignedOut>
-                <Link href="/sign-in" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Log in</Link>
+                <Link href="/sign-in" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Log in</Link>
                 <Link href="/sign-up">
-                  <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-5 h-9 text-sm font-medium transition-transform hover:scale-105 active:scale-95">
+                  <Button className="bg-gray-900 text-white hover:bg-gray-800 rounded-full px-5 h-9 text-sm font-medium transition-transform hover:scale-105 active:scale-95">
                     Sign up
                   </Button>
                 </Link>
@@ -100,7 +100,7 @@ const LandingPage = () => {
               </SignedIn>
             </div>
             
-            <button className="md:hidden text-gray-400 hover:text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <button className="md:hidden text-gray-600 hover:text-gray-900" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
@@ -114,16 +114,16 @@ const LandingPage = () => {
           className="max-w-7xl mx-auto text-center relative z-10"
         >
           <FadeIn delay={0.1}>
-            <h1 className="text-5xl md:text-8xl font-bold mb-8 tracking-tight leading-[1.1]">
+            <h1 className="text-5xl md:text-8xl font-bold mb-8 tracking-tight leading-[1.1] text-gray-900">
               Build AI Agents <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-violet-400  bg-300%">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-violet-600  bg-300%">
                 Visually
               </span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
               The no-code platform powered by Gemini. Connect custom APIs, design logic flows, and export to your Next.js project instantly.
             </p>
           </FadeIn>
@@ -131,7 +131,7 @@ const LandingPage = () => {
           <FadeIn delay={0.3}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
               <Link href="/sign-up">
-                <Button className="h-12 px-8 rounded-full bg-violet-600 hover:bg-violet-700 text-white text-base shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] transition-all hover:scale-105 hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.6)]">
+                <Button className="h-12 px-8 rounded-lg bg-gray-900 hover:bg-gray-800 text-white text-base font-medium shadow-sm transition-colors">
                   Start Building 
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -145,17 +145,17 @@ const LandingPage = () => {
       </section>
 
     
-      <section className="py-10 border-y border-white/5 bg-black/20">
+      <section className="py-10 border-y border-gray-200 bg-gray-50/50">
         <div className="max-w-7xl mx-auto overflow-hidden relative">
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
           
           <div className="flex gap-16 animate-infinite-scroll">
             {[...Array(2)].map((_, i) => (
               <React.Fragment key={i}>
                 {['Next.js','React', 'ConvexDB', 'Clerk', 'Arcjet ', 'TypeScript', 'TailwindCSS'].map((tech) => (
                   <div key={tech} className="flex items-center gap-4 group cursor-pointer">
-                    <span className="text-xl font-semibold text-gray-600 group-hover:text-blue-400 transition-colors shrink-0 select-none">
+                    <span className="text-xl font-semibold text-gray-400 group-hover:text-blue-600 transition-colors shrink-0 select-none">
                       {tech}
                     </span>
                   </div>
@@ -171,30 +171,30 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto">
           <FadeIn>
             <div className="mb-20">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">Visual Power. No Code Required.</h2>
-              <p className="text-xl text-gray-400 max-w-2xl">From visual flow to production code in seconds. Built on modern infrastructure.</p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">Visual Power. No Code Required.</h2>
+              <p className="text-xl text-gray-600 max-w-2xl">From visual flow to production code in seconds. Built on modern infrastructure.</p>
             </div>
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
             
             
-            <SpotlightCard className="md:col-span-2 row-span-2 bg-[#0c0c0c]">
+            <SpotlightCard className="md:col-span-2 row-span-2 bg-gradient-to-br from-gray-50 to-white">
               <div className="h-full flex flex-col relative overflow-hidden">
                
-                <div className="absolute top-0 left-0 right-0 p-8 z-20 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
+                <div className="absolute top-0 left-0 right-0 p-8 z-20 bg-gradient-to-b from-white/90 to-transparent pointer-events-none">
                    <div className="flex items-center gap-3 mb-2">
                       {/* <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/30">
                         <Workflow className="w-5 h-5 text-blue-400" />
                       </div> */}
-                      <h3 className="text-2xl font-semibold">Visual Workflow Builder</h3>
+                      <h3 className="text-2xl font-semibold text-gray-900">Visual Workflow Builder</h3>
                    </div>
-                   <p className="text-gray-400 max-w-sm">Connect custom API nodes, AI agents, and logic gates visually. Use live data from any API (Weather, Stock, etc.) instantly.</p>
+                   <p className="text-gray-600 max-w-sm">Connect custom API nodes, AI agents, and logic gates visually. Use live data from any API (Weather, Stock, etc.) instantly.</p>
                 </div>
 
                
                 <div className="absolute inset-0 top-0 overflow-hidden flex items-center justify-center">
-                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:20px_20px]" />
+                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:20px_20px]" />
                    
                    <div className="relative w-full h-full max-w-[800px] max-h-[500px]">
                       
@@ -245,11 +245,11 @@ const LandingPage = () => {
           
             <SpotlightCard>
                <div className="p-8 h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-4 border border-green-500/20">
-                    <Sparkles className="w-6 h-6 text-green-400" />
+                <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-4 border border-green-500/30">
+                    <Sparkles className="w-6 h-6 text-green-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">No-Code Platform</h3>
-                <p className="text-gray-400 text-sm">
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">No-Code Platform</h3>
+                <p className="text-gray-600 text-sm">
                   Design complex AI behaviors without writing code. Use drag-and-drop nodes to create agents that think and act.
                 </p>
               </div>
@@ -258,11 +258,11 @@ const LandingPage = () => {
            
             <SpotlightCard>
               <div className="p-8 h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4 border border-purple-500/20">
-                    <Code2 className="w-6 h-6 text-purple-400" />
+                <div className="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
+                    <Code2 className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Export to Code</h3>
-                <p className="text-gray-400 text-sm">
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">Export to Code</h3>
+                <p className="text-gray-600 text-sm">
                   Once your workflow is ready, publish it and copy the code to integrate directly into your own Next.js or React projects.
                 </p>
               </div>
@@ -274,29 +274,29 @@ const LandingPage = () => {
                 
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-4">
-                     <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center border border-orange-500/20">
-                        <Terminal className="w-6 h-6 text-orange-400" />
+                     <div className="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center border border-orange-500/30">
+                        <Terminal className="w-6 h-6 text-orange-600" />
                      </div>
-                     <div className="h-8 w-[1px] bg-white/10" />
-                     <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/20">
-                        <MessageSquare className="w-6 h-6 text-blue-400" />
+                     <div className="h-8 w-[1px] bg-gray-300" />
+                     <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center border border-blue-500/30">
+                        <MessageSquare className="w-6 h-6 text-blue-600" />
                      </div>
                   </div>
-                  <h3 className="text-2xl font-semibold mb-2">Dual Deployment Mode</h3>
-                  <p className="text-gray-400">
+                  <h3 className="text-2xl font-semibold mb-2 text-gray-900">Dual Deployment Mode</h3>
+                  <p className="text-gray-600">
                     Your choice: Integrate into your codebase via SDK or use the ready-made chat interface.
                   </p>
                 </div>
 
                 
-                <div className="flex-1 w-full h-auto min-h-[200px] bg-[#1e1e20] rounded-xl border border-white/5 relative overflow-hidden flex shadow-2xl">
+                <div className="flex-1 w-full h-auto min-h-[200px] bg-gray-900 rounded-xl border border-gray-700 relative overflow-hidden flex shadow-2xl">
                     
                  
-                    <div className="w-1/2 border-r border-white/5 bg-black/50 p-4 font-mono text-[9px] md:text-[10px] text-gray-400 flex flex-col gap-1 overflow-hidden">
+                    <div className="w-1/2 border-r border-gray-700 bg-gray-950 p-4 font-mono text-[9px] md:text-[10px] text-gray-400 flex flex-col gap-1 overflow-hidden">
                        <div className="flex gap-1.5 mb-3">
-                          <div className="w-2.5 h-2.5 rounded-full bg-red-500/20" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-green-500/20" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
                        </div>
                        
                        <motion.div 
@@ -371,8 +371,8 @@ const LandingPage = () => {
                        </motion.div>
                     </div>
 
-                    <div className="w-1/2 bg-zinc-900/50 p-4 flex flex-col justify-end gap-3 relative">
-                       <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent pointer-events-none" />
+                    <div className="w-1/2 bg-gray-800 p-4 flex flex-col justify-end gap-3 relative">
+                       <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent pointer-events-none" />
                        
                     
                        <motion.div 
@@ -403,20 +403,20 @@ const LandingPage = () => {
 
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="relative rounded-3xl p-12 overflow-hidden text-center group bg-[#0A0A0A] border border-white/5">
+          <div className="relative rounded-3xl p-12 overflow-hidden text-center group bg-gradient-to-br from-blue-50 to-purple-50 border border-gray-200 shadow-lg">
        
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-900/10 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-100/30 to-transparent opacity-50" />
             <motion.div 
-              className="absolute inset-0 bg-blue-600/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              className="absolute inset-0 bg-blue-600/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
             />
             
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Start Building Today</h2>
-              <p className="text-gray-400 mb-8 max-w-lg mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Start Building Today</h2>
+              <p className="text-gray-700 mb-8 max-w-lg mx-auto">
                 Join developers building the next generation of AI agents with custom APIs and logic.
               </p>
               <Link href="/sign-up">
-                <Button className="h-14 px-8 rounded-full bg-white text-black hover:bg-gray-200 text-lg font-semibold transition-transform hover:-translate-y-1">
+                <Button className="h-14 px-8 rounded-full bg-gray-900 text-white hover:bg-gray-800 text-lg font-semibold transition-transform hover:-translate-y-1 shadow-lg">
                   Get Started Free
                 </Button>
               </Link>
@@ -426,13 +426,13 @@ const LandingPage = () => {
       </section>
 
       
-      <footer className="bg-black border-t border-white/10 relative flex flex-col items-center overflow-hidden">
+      <footer className="bg-gray-50 border-t border-gray-200 relative flex flex-col items-center overflow-hidden">
   
 
   <div className="relative w-full pt-20 pb-6 px-6">
     
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-      <h1 className="text-[18vw] font-bold text-white/[0.04] tracking-tighter leading-none whitespace-nowrap">
+      <h1 className="text-[18vw] font-bold text-gray-900/[0.03] tracking-tighter leading-none whitespace-nowrap">
         AGentFlow
       </h1>
     </div>
@@ -452,11 +452,11 @@ const LandingPage = () => {
 
 const MockNode = ({ x, y, color, icon, title, sub }: { x: number, y: number, color: string, icon: any, title: string, sub: string }) => {
    const colors: Record<string, string> = {
-      blue: 'border-blue-500/50 shadow-[0_0_20px_-10px_rgba(59,130,246,0.5)]',
-      purple: 'border-purple-500/50 shadow-[0_0_20px_-10px_rgba(168,85,247,0.5)]',
-      orange: 'border-orange-500/50 shadow-[0_0_20px_-10px_rgba(249,115,22,0.5)]',
-      green: 'border-green-500/50 shadow-[0_0_20px_-10px_rgba(34,197,94,0.5)]',
-      gray: 'border-zinc-500/50 shadow-[0_0_20px_-10px_rgba(113,113,122,0.5)]',
+      blue: 'border-blue-300 shadow-md',
+      purple: 'border-purple-300 shadow-md',
+      orange: 'border-orange-300 shadow-md',
+      green: 'border-green-300 shadow-md',
+      gray: 'border-gray-300 shadow-md',
    }
 
    const iconColors: Record<string, string> = {
@@ -464,33 +464,33 @@ const MockNode = ({ x, y, color, icon, title, sub }: { x: number, y: number, col
       purple: 'bg-purple-500',
       orange: 'bg-orange-500',
       green: 'bg-green-500',
-      gray: 'bg-zinc-500',
+      gray: 'bg-gray-500',
    }
 
    return (
       <motion.div 
-         className={`absolute w-32 bg-[#1e1e20] rounded-xl border border-[#333] p-2.5 flex flex-col gap-2 z-20 ${colors[color]}`}
+         className={`absolute w-32 bg-white rounded-xl border-2 p-2.5 flex flex-col gap-2 z-20 ${colors[color]}`}
          style={{ left: x, top: y }}
          whileHover={{ scale: 1.05 }}
       >
       
-         <div className="flex items-center justify-between border-b border-white/5 pb-2">
+         <div className="flex items-center justify-between border-b border-gray-200 pb-2">
             <div className="flex items-center gap-2">
                <div className={`w-5 h-5 rounded flex items-center justify-center text-white ${iconColors[color]}`}>
                   {icon}
                </div>
-               <span className="text-[10px] font-semibold text-gray-200">{title}</span>
+               <span className="text-[10px] font-semibold text-gray-900">{title}</span>
             </div>
          </div>
       
          <div className="px-1">
-             <div className="text-[9px] text-gray-400 font-mono bg-black/20 rounded p-1 border border-white/5 truncate">
+             <div className="text-[9px] text-gray-600 font-mono bg-gray-50 rounded p-1 border border-gray-200 truncate">
                {sub}
              </div>
          </div>
 
-         <div className="absolute top-7 -left-1 w-2 h-2 bg-[#1e1e20] border border-gray-600 rounded-full" />
-         <div className="absolute top-7 -right-1 w-2 h-2 bg-[#1e1e20] border border-gray-600 rounded-full" />
+         <div className="absolute top-7 -left-1 w-2 h-2 bg-white border-2 border-gray-400 rounded-full" />
+         <div className="absolute top-7 -right-1 w-2 h-2 bg-white border-2 border-gray-400 rounded-full" />
       </motion.div>
    )
 }
@@ -501,18 +501,18 @@ const HeroVisualization = () => {
   return (
     <div className="relative max-w-5xl mx-auto h-[400px] mt-12 perspective-[1000px]">
    
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-500/5 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-100/30 via-transparent to-transparent" />
       
     
       <motion.div 
         initial={{ rotateX: 20, opacity: 0 }}
         animate={{ rotateX: 20, opacity: 1 }}
         transition={{ duration: 1 }}
-        className="relative w-full h-full bg-[#0a0a0a]/80 border border-white/10 rounded-xl backdrop-blur-md overflow-hidden shadow-2xl"
+        className="relative w-full h-full bg-white border-2 border-gray-200 rounded-xl backdrop-blur-md overflow-hidden shadow-2xl"
         style={{ transformStyle: 'preserve-3d' }}
       >
    
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:40px_40px]" />
 
       
         <div className="absolute inset-0 flex items-center justify-center gap-12" style={{ transform: 'translateZ(20px)' }}>
@@ -549,17 +549,17 @@ const FloatingNode = ({ icon, color, label, delay }: { icon: any, color: string,
   <motion.div
     animate={{ y: [0, -10, 0] }}
     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
-    className="bg-[#151515] border border-white/10 p-5 rounded-2xl flex flex-col items-center gap-4 shadow-2xl relative z-20 w-40"
+    className="bg-white border-2 border-gray-200 p-5 rounded-2xl flex flex-col items-center gap-4 shadow-lg hover:shadow-xl transition-shadow relative z-20 w-40"
   >
-    <div className={`w-12 h-12 ${color} rounded-xl flex items-center justify-center text-black shadow-lg`}>
+    <div className={`w-12 h-12 ${color} rounded-xl flex items-center justify-center text-white shadow-lg`}>
       {icon}
     </div>
     <div className="flex flex-col items-center gap-1">
-        <span className="text-sm font-semibold text-white">{label}</span>
+        <span className="text-sm font-semibold text-gray-900">{label}</span>
         <span className="text-[10px] text-gray-500 font-mono">active</span>
     </div>
    
-    <div className={`absolute -inset-8 ${color} opacity-10 blur-2xl -z-10`} />
+    <div className={`absolute -inset-8 ${color} opacity-5 blur-2xl -z-10`} />
   </motion.div>
 )
 
