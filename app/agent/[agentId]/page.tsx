@@ -7,7 +7,7 @@ import '@xyflow/react/dist/style.css';
 import StartNodes from '../_customNodes/StartNodes';
 import AgentNode from '../_customNodes/AgentNode';
 import EndNode from '../_customNodes/EndNodes';
-import IfElseNode from '../_customNodes/IfElseNode';
+import ElseNode from '../_customNodes/ElseNode'
 import WhileNode from '../_customNodes/WhileNode';
 import ApprovalNode from '../_customNodes/ApprovalNode';
 import ApiNode from '../_customNodes/ApiNode';
@@ -20,14 +20,13 @@ import { useMutation } from 'convex/react';
 import { toast } from 'sonner';
 import SettingPanel from '../_components/SettingPanel';
 import { useOnSelectionChange, OnSelectionChangeParams } from '@xyflow/react';
-import { set } from 'date-fns';
 import { Id } from '@/convex/_generated/dataModel';
 
 export const nodeTypes = {
   StartNodes: StartNodes,
   AgentNode: AgentNode,
   EndNode: EndNode,
-  IfElseNode: IfElseNode,
+  IfElseNode: ElseNode,
   WhileNode: WhileNode,
   ApprovalNode: ApprovalNode,
   ApiNode: ApiNode,
