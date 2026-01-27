@@ -17,16 +17,20 @@ import {
 import {
   Gem,
 } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserDetails } from "@/context/UserData";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
+import { useConvex } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 const MenuOptions = [
     {name: 'Dashboard',url:'/dashboard', icon: '/dashboard.png'},
-    {name: 'Data',url:'#', icon: '/database.png'},
-    {name: 'Agent',url:'#', icon: '/ai.png'},
-    {name: 'Profile',url:'#', icon: '/profile.png'}
+    // {name: 'Data',url:'#', icon: '/database.png'},
+    {name: 'Agent',url:'/dashboard/my-agents', icon: '/ai.png'},
+    {name: 'Pricing',url:'/dashboard/pricing', icon: '/download.png'},
+    {name: 'Profile',url:'/dashboard/profile', icon: '/profile.png'}
   ]
 
 
@@ -35,6 +39,30 @@ export function AppSidebar() {
   //check for sidebar open or not
   const { open } = useSidebar();
   const { userDetails, setUserDetail } = useContext(UserDetails);
+  const {has} = useAuth();
+  const hasPremiumAccess = has&&has({plan :"unlimited_plan"});
+  console.log("Has Premium Access:", hasPremiumAccess);
+
+  const convex = useConvex();
+
+  const [totalRemainingCredits, setTotalRemainingCredits] = useState<number>(0);
+  
+
+  const GetUserAgent=async ()=>{
+    const agentDetails = await convex.query(api.agent.GetAgnetById,{
+            agentId: userDetails?.userId
+        });
+
+        setTotalRemainingCredits(2- Number(agentDetails?.length || 0))
+        setUserDetail(prev=>({...prev,remainingCredits: 2- Number(agentDetails?.length || 0)}))
+  }
+
+  useEffect(() => {
+    if (userDetails && hasPremiumAccess === false) {
+      GetUserAgent();
+    }
+  },[ userDetails]);
+
   // console.log("UserDetails from context:", userDetails);
   const path = usePathname()
 
@@ -66,19 +94,38 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="mb-5">
-        <div className="flex items-center gap-2">
-          <Gem />
-          {open && (
-            <h2 className="text-sm font-medium">
-              Remaining Credit: 
-              <span className="font-bold">{userDetails?.token ?? 0}</span>
-            </h2>
-          )}
-        </div>
-        
-
-          {open &&<Button>Upgrade to Premium</Button>}
-        
+        {!hasPremiumAccess ? (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 px-2">
+              <Gem className="w-5 h-5 text-yellow-500 shrink-0" />
+              {open && (
+                <div className="flex flex-col">
+                  <span className="text-xs text-muted-foreground">Remaining Credits</span>
+                  <span className="text-sm font-bold">{totalRemainingCredits}/2</span>
+                </div>
+              )}
+            </div>
+            
+            {open && (
+              <Button className="w-full" size="sm">
+                Upgrade to Premium
+              </Button>
+            )}
+          </div>
+        ) : (
+          <div className="px-2 py-3 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-100">
+            {open ? (
+              <div className="flex items-center gap-2">
+                <Gem className="w-5 h-5 text-purple-600 shrink-0" />
+                <p className="text-sm font-semibold text-purple-900">
+                  Unlimited Agents
+                </p>
+              </div>
+            ) : (
+              <Gem className="w-5 h-5 text-purple-600 mx-auto" />
+            )}
+          </div>
+        )}
       </SidebarFooter>
     </Sidebar>
   );

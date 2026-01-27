@@ -19,6 +19,7 @@ import { api } from '@/convex/_generated/api'
 import {v4 as uuidv4} from 'uuid'
 import { createAgent } from '@/convex/agent'
 import { UserDetails } from '@/context/UserData';
+import { toast } from 'sonner';
 
 function CreateAgentSection() {
 
@@ -28,9 +29,16 @@ function CreateAgentSection() {
   const [agentName, setAgentName] = useState<string>()
   const [loader, setLoader] = useState(false)
   const {userDetails, setUserDetail} = useContext(UserDetails)
+  const {has} = useContext(UserDetails);
+  const hasPremiumAccess = has&&has({plan :"unlimited_plan"});
+  console.log("Has Premium Access:", hasPremiumAccess);
 
   const CreateAgent = async () => {
-  // Check if userDetail exists before proceeding
+    if(!hasPremiumAccess && userDetails&& userDetails?.remainingCredits<=0){
+      toast.error("You have reached the limit of free agents. Please upgrade to premium for unlimited agents.")
+      return;
+    }
+
   if (!userDetails?._id) {
     console.error("User details not available");
     alert("Please wait for user data to load");
