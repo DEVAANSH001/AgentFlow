@@ -24,6 +24,7 @@ import { usePathname } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { useConvex } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
 
 const MenuOptions = [
     {name: 'Dashboard',url:'/dashboard', icon: '/dashboard.png'},
@@ -49,12 +50,14 @@ export function AppSidebar() {
   
 
   const GetUserAgent=async ()=>{
-    const agentDetails = await convex.query(api.agent.GetAgnetById,{
-            agentId: userDetails?.userId
+    const agentDetails = await convex.query(api.agent.GetAgentById,{
+            agentId: userDetails?.userId as Id<"AgentTable">,
         });
 
-        setTotalRemainingCredits(2- Number(agentDetails?.length || 0))
-        setUserDetail(prev=>({...prev,remainingCredits: 2- Number(agentDetails?.length || 0)}))
+         const agentCount = agentDetails ? 1 : 0;
+  
+  setTotalRemainingCredits(2 - agentCount)
+  setUserDetail((prev: any) => ({...prev, remainingCredits: 2 - agentCount}))
   }
 
   useEffect(() => {

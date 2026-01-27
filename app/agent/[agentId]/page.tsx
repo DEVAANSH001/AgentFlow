@@ -21,6 +21,7 @@ import { toast } from 'sonner';
 import SettingPanel from '../_components/SettingPanel';
 import { useOnSelectionChange, OnSelectionChangeParams } from '@xyflow/react';
 import { set } from 'date-fns';
+import { Id } from '@/convex/_generated/dataModel';
 
 export const nodeTypes = {
   StartNodes: StartNodes,
@@ -48,7 +49,7 @@ function AgentBuilder() {
   const GetAgentDetails = async () => {
     try {
       // console.log( agentId);
-      const result = await convex.query(api.agent.GetAgnetById, {
+      const result = await convex.query(api.agent.GetAgentById, {
         agentId: agentId as string
       })
     
@@ -139,7 +140,7 @@ function AgentBuilder() {
       });
       
       await UpdateAgentDetail({
-        id: agentDetails._id,
+        id: agentDetails._id  as Id<"AgentTable">,
         nodes: addedNode,
         edges: nodeEdges
       })

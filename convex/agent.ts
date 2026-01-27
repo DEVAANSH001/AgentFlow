@@ -32,7 +32,7 @@ export const GetUserAgents = query({
     }
 })
 
-export const GetAgnetById = query({
+export const GetAgentById = query({
     args: {
         agentId: v.string()
     },

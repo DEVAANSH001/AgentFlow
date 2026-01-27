@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { RefreshCcwIcon } from 'lucide-react';
 import axios from 'axios';
 import ChatUi from './_components/ChatUi';
+import { Id } from '@/convex/_generated/dataModel';
 
 
 const PreviewAgent = () => {
@@ -28,7 +29,7 @@ const PreviewAgent = () => {
 
   const GetAgentDetails = async () => {
     try {
-      const result = await convex.query(api.agent.GetAgnetById, {
+      const result = await convex.query(api.agent.GetAgentById, {
         agentId: agentId as string
       })
       setAgentDetails(result)
@@ -151,7 +152,7 @@ const PreviewAgent = () => {
       console.log("Generated Agent Config:", response.data);
       
       await updateAgentConfig({
-        id: agentDetails._id,
+        id: agentDetails._id as Id<"AgentTable">,
         agentToolConfig: response.data  
       });
       
