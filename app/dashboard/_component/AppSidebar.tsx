@@ -42,7 +42,7 @@ export function AppSidebar() {
   const { userDetails, setUserDetail } = useContext(UserDetails);
   const {has} = useAuth();
   const hasPremiumAccess = has&&has({plan :"unlimited_plan"});
-  console.log("Has Premium Access:", hasPremiumAccess);
+  // console.log("Has Premium Access:", hasPremiumAccess);
 
   const convex = useConvex();
 
@@ -104,7 +104,7 @@ export function AppSidebar() {
               {open && (
                 <div className="flex flex-col">
                   <span className="text-xs text-muted-foreground">Remaining Credits</span>
-                  <span className="text-sm font-bold">{totalRemainingCredits}/2</span>
+                  <span className="text-sm font-bold">Free Plan</span>
                 </div>
               )}
             </div>
