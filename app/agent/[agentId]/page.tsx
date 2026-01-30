@@ -34,7 +34,6 @@ export const nodeTypes = {
 
 function AgentBuilder() {
   const {addedNode, setAddedNode, nodeEdges, setNodeEdges,selectedNode, setSelectedNode} = useContext(WorkflowContext);
-  
   const {agentId} = useParams();
   const UpdateAgentDetail = useMutation(api.agent.UpdateDetails);
   const [agentDetails, setAgentDetails] = useState<Agent>();

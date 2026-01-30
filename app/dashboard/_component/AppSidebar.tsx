@@ -14,60 +14,34 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import {
-  Gem,
-} from "lucide-react";
-import { useContext, useEffect, useState } from "react";
+import { Gem } from "lucide-react";
+import { useContext } from "react"; 
 import { UserDetails } from "@/context/UserData";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
-import { useConvex } from "convex/react";
+import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
 const MenuOptions = [
-    {name: 'Dashboard',url:'/dashboard', icon: '/dashboard.png'},
-    // {name: 'Data',url:'#', icon: '/database.png'},
-    {name: 'Agent',url:'/dashboard/my-agents', icon: '/ai.png'},
-    {name: 'Pricing',url:'/dashboard/pricing', icon: '/download.png'},
-    {name: 'Profile',url:'/dashboard/profile', icon: '/profile.png'}
-  ]
-
-
+  { name: 'Dashboard', url: '/dashboard', icon: '/dashboard.png' },
+  { name: 'Agent', url: '/dashboard/my-agents', icon: '/ai.png' },
+  { name: 'Pricing', url: '/dashboard/pricing', icon: '/download.png' },
+  { name: 'Profile', url: '/dashboard/profile', icon: '/profile.png' }
+]
 
 export function AppSidebar() {
-  //check for sidebar open or not
   const { open } = useSidebar();
-  const { userDetails, setUserDetail } = useContext(UserDetails);
-  const {has} = useAuth();
-  const hasPremiumAccess = has&&has({plan :"unlimited_plan"});
-  // console.log("Has Premium Access:", hasPremiumAccess);
-
-  const convex = useConvex();
-
-  const [totalRemainingCredits, setTotalRemainingCredits] = useState<number>(0);
-  
-
-  const GetUserAgent=async ()=>{
-    const agentDetails = await convex.query(api.agent.GetAgentById,{
-            agentId: userDetails?.userId as Id<"AgentTable">,
-        });
-
-         const agentCount = agentDetails ? 1 : 0;
-  
-  setTotalRemainingCredits(2 - agentCount)
-  setUserDetail((prev: any) => ({...prev, remainingCredits: 2 - agentCount}))
-  }
-
-  useEffect(() => {
-    if (userDetails && hasPremiumAccess === false) {
-      GetUserAgent();
-    }
-  },[ userDetails]);
-
-  // console.log("UserDetails from context:", userDetails);
-  const path = usePathname()
+  const { userDetails } = useContext(UserDetails); 
+  const { has } = useAuth();
+  const hasPremiumAccess = has && has({ plan: "unlimited_plan" });
+  const path = usePathname();
+  const userAgents = useQuery(api.agent.GetUserAgents, 
+    userDetails?._id ? { userId: userDetails._id as Id<"UserTable"> } : "skip"
+  );
+  const agentCount = userAgents?.length || 0;
+  const isLimitReached = agentCount >= 2;
 
   return (
     <Sidebar collapsible="icon">
@@ -84,7 +58,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {MenuOptions.map((menu, index) => (
                 <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild size={open ? "lg" : "default"} isActive={path===menu.url}>
+                  <SidebarMenuButton asChild size={open ? "lg" : "default"} isActive={path === menu.url}>
                     <Link href={menu.url}>
                       <Image src={menu.icon} alt={menu.name} width={20} height={20} />
                       <span>{menu.name}</span>
@@ -104,11 +78,12 @@ export function AppSidebar() {
               {open && (
                 <div className="flex flex-col">
                   <span className="text-xs text-muted-foreground">Remaining Credits</span>
-                  <span className="text-sm font-bold">Free Plan</span>
+                  <span className="text-sm font-bold">
+                     {Math.max(0, 2 - agentCount)} / 2 Free Plan
+                  </span>
                 </div>
               )}
             </div>
-            
             {open && (
               <Button className="w-full" size="sm">
                 Upgrade to Premium

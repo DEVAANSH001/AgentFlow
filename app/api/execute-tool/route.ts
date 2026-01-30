@@ -75,8 +75,8 @@ export async function POST(req: NextRequest) {
       }
 
       const finalUrl = urlObj.toString();
-      console.log('🌐 GET Request URL:', finalUrl);
-      console.log('📤 Headers:', headers);
+      console.log(' GET Request URL:', finalUrl);
+      console.log(' Headers:', headers);
 
       response = await axios.get(finalUrl, { 
         headers,
@@ -84,7 +84,10 @@ export async function POST(req: NextRequest) {
         validateStatus: (status) => status < 500 
       });
 
-    } else if (tool.method === 'POST') {
+    }
+    
+    
+    else if (tool.method === 'POST') {
       const headers: any = {
         'Content-Type': 'application/json'
       };

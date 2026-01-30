@@ -8,9 +8,12 @@ export async function POST(req: NextRequest) {
     const agentDetails = await fetchQuery(api.agent.GetAgentById,{
         agentId: agentId
     })
-    console.log(agentDetails);
+    console.log(agentDetails?.agentToolConfig);
     
-    return new Response(JSON.stringify({agentDetails}), {
-        status: 200})
+    return new Response(JSON.stringify({ 
+        agentToolConfig: agentDetails?.agentToolConfig 
+    }), {
+        status: 200
+    });
         
 }
