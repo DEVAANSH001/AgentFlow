@@ -9,11 +9,14 @@ export async function POST(req: NextRequest) {
         agentId: agentId
     })
     console.log(agentDetails?.agentToolConfig);
+
+    
+
+    
     
     return new Response(JSON.stringify({ 
         agentToolConfig: agentDetails?.agentToolConfig 
     }), {
         status: 200
     });
-        
 }
