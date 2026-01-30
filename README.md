@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AgentFlow - No-Code AI Agent Builder
 
-## Getting Started
+ Build powerful AI agents with visual workflows - no coding required. Connect API calls, add conditional logic, and create custom AI agents through an intuitive drag-and-drop interface.
 
-First, run the development server:
+> **Live :** [agent-flow-dev.vercel.app](https://agent-flow-dev.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+##  What is AgentFlow?
+
+AgentFlow solves a critical limitation of standard chatbots - they can't call APIs or handle conditional logic. With AgentFlow, you can create AI agents that:
+
+-  Make dynamic API calls based on user input
+-  Handle conditional branching (if-else logic)
+-  Execute complex multi-step workflows
+- Integrate with any REST API (GET/POST)
+
+##  Key Features
+
+### Visual Workflow Builder
+Drag-and-drop interface powered by React Flow to create complex agent workflows without writing code.
+
+### Real-time Agent Testing
+Test your agents instantly with a built-in chat interface. See your workflows come to life in real-time.
+
+### Dynamic API Integration
+Connect any REST API with:
+- GET/POST methods support
+- Query parameters & headers
+- API key management (query/header)
+- Dynamic parameter extraction
+- Request body templates for POST
+
+### Conditional Logic
+Add if-else nodes to create intelligent decision-making workflows based on user input or API responses.
+
+### AI-Powered Processing
+Integrated with Google Gemini to:
+- Extract parameters from natural language
+- Format API responses conversationally
+- Generate agent configurations automatically
+
+## Tech Stack
+
+- **Frontend:** Next.js 16, React, TypeScript, Tailwind CSS
+- **Workflow Engine:** React Flow
+- **AI:** Google Gemini 2.0 Flash
+- **Database:** Convex (real-time)
+- **Auth:** Clerk
+- **Security:** Arcjet (rate limiting)
+
+##  How It Works
+
+1. **Build Visual Workflow** - Connect nodes: Start → Agent → API → If-Else → End
+2. **Configure Settings** - Set up API endpoints, parameters, and conditional logic
+3. **Generate Agent** - AI converts your workflow into executable configuration
+4. **Test & Deploy** - Chat with your agent and iterate on the fly
+
+### Architecture Flow
+```
+User Message
+    ↓
+ChatUi → /api/chat
+    ↓
+Gemini decides: Use tool with extracted parameters
+    ↓
+/api/chat → /api/execute-tool
+    ↓
+Replace placeholders with actual values
+    ↓
+HTTP Request to external API
+    ↓
+API Response
+    ↓
+Gemini formats response conversationally
+    ↓
+Display to user
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![](./public/s1.png)
+![](./public/s2.png)
+![](./public/s3.png)
+![](./public/s4.png)
+![](./public/s5.png)
+![](./public/s6.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+##  Use Cases
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Customer Support Automation** - Integrate with CRM APIs
+- **Data Retrieval Agents** - Fetch from multiple data sources
+- **Booking & Reservation Systems** - Handle complex conditional flows
+- **Real-time Information Bots** - Weather, stocks, news, etc.
+- **Workflow Automation** - Multi-step business processes
 
-## Learn More
+##  Security & Performance
 
-To learn more about Next.js, take a look at the following resources:
+-  Rate limiting with Arcjet (100 requests/min)
+-  Secure API key storage
+-  User authentication with Clerk
+-  Input validation & error handling
+-  Real-time data synchronization
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Highlights
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+- **Node-based architecture** for infinite workflow possibilities
+- **AI-powered config generation** - Gemini converts visual flows to executable code
+- **Real-time collaboration ready** - Built on Convex's real-time infrastructure
+- **Production-grade** - Rate limiting, auth, error handling
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
