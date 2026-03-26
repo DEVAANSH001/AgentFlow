@@ -3,13 +3,11 @@
 import React, { useState } from 'react'
 import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Play,  Sparkles, Code2, Terminal, MousePointer2, Bot, Split, Flag, Server, MessageSquare, Menu, X } from 'lucide-react'
+import { ArrowRight, Play, Sparkles, Code2, Terminal, MousePointer2, Bot, Split, Flag, Server, MessageSquare, Menu, X, Apple, Monitor, Smartphone, Send, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import { UserButton, SignedIn, SignedOut } from '@clerk/nextjs'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
-
-
 
 const FadeIn = ({ children, delay = 0, className }: { children: React.ReactNode, delay?: number, className?: string }) => (
   <motion.div
@@ -58,8 +56,6 @@ const SpotlightCard = ({ children, className = "" }: { children: React.ReactNode
   )
 }
 
-
-
 const LandingPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { scrollYProgress } = useScroll()
@@ -67,18 +63,15 @@ const LandingPage = () => {
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95])
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden selection:bg-blue-500/20 font-sans">
-      
+    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden selection:bg-orange-500/20 font-sans">
       
       <div className="fixed inset-0 z-0 h-full w-full bg-white bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:24px_24px]">
         <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-500 opacity-10 blur-[100px]"></div>
       </div>
 
-     
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-xl shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-           
             <span className="text-lg font-bold text-gray-900">AgentFlow</span>
           </Link>
 
@@ -107,44 +100,138 @@ const LandingPage = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+      {/* NEW HERO SECTION */}
+      <section className="relative pt-32 lg:pt-40 pb-20 px-6 overflow-hidden min-h-screen flex items-center">
+        
+        {/* Abstract Ribbon Background Mockup */}
+        <div className="absolute top-0 right-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+          <svg className="absolute right-[-20%] top-[-10%] w-[120%] h-[120%] opacity-80" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="ribbonGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#fb923c" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#ef4444" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#f97316" stopOpacity="0.1" />
+              </linearGradient>
+              <linearGradient id="ribbonGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#f97316" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#dc2626" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M1000,0 C800,300 900,600 400,800 C100,900 -100,700 0,1000 L1000,1000 Z" fill="url(#ribbonGrad1)" className="animate-pulse duration-[10s]" />
+            <path d="M1000,200 C700,400 800,700 300,900 C50,1000 -50,800 0,1100 L1000,1100 Z" fill="url(#ribbonGrad2)" />
+            <path d="M1000,-100 C700,200 900,400 400,600 C-100,800 -100,400 -200,600 L1000,1000 Z" fill="url(#ribbonGrad1)" opacity="0.5" />
+          </svg>
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
+        </div>
+
         <motion.div 
           style={{ opacity, scale }}
-          className="max-w-7xl mx-auto text-center relative z-10"
+          className="max-w-7xl mx-auto w-full relative z-10 grid lg:grid-cols-2 gap-12 items-center"
         >
-          <FadeIn delay={0.1}>
-            <h1 className="text-5xl md:text-8xl font-bold mb-8 tracking-tight leading-[1.1] text-gray-900">
-              Build AI Agents <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-violet-600  bg-300%">
-                Visually
-              </span>
-            </h1>
-          </FadeIn>
+          {/* Left Column Content */}
+          <div className="text-left mt-12 lg:mt-0">
+            
+            <FadeIn delay={0.2}>
+              <h1 className="text-5xl md:text-[64px] font-medium mb-6 tracking-tight leading-[1.05] text-gray-900">
+                Build Powerful AI Agents <br className="hidden md:block" />
+                With Visual Workflows
+              </h1>
+            </FadeIn>
 
-          <FadeIn delay={0.2}>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-              The no-code platform powered by Gemini. Connect custom APIs, design logic flows, and export to your Next.js project instantly.
-            </p>
-          </FadeIn>
+            <FadeIn delay={0.3}>
+              <p className="text-lg text-gray-600 max-w-xl mb-10 leading-relaxed">
+                No coding required. Connect API calls, add conditional logic, and create custom AI agents through an intuitive drag-and-drop interface powered by Gemini.
+              </p>
+            </FadeIn>
 
-          <FadeIn delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-              <Link href="/sign-up">
-                <Button className="h-12 px-8 rounded-lg bg-gray-900 hover:bg-gray-800 text-white text-base font-medium shadow-sm transition-colors">
-                  Start Building 
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-              
-            </div>
-          </FadeIn>
+            <FadeIn delay={0.4}>
+              <div className="flex flex-col sm:flex-row items-start gap-4 mb-16">
+                <Link href="/sign-up">
+                  <Button className="h-12 px-8 rounded-full bg-[#FF4500] hover:bg-[#E03E00] text-white text-base font-medium shadow-lg shadow-orange-500/20 transition-all hover:-translate-y-0.5">
+                    Start Building Free
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+                
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* Right Column Interactive Visuals */}
+          <div className="relative h-[500px] lg:h-[600px] hidden md:block w-full">
+            
+            {/* Top Dropdown Menu Graphic */}
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="absolute top-0 right-32 w-64 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100 p-2 z-10"
+            >
+               <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl cursor-pointer transition-colors">
+                  <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center text-orange-500 shrink-0"><Server className="w-4 h-4" /></div>
+                  <div className="flex-1 overflow-hidden">
+                    <div className="text-sm font-semibold text-gray-900 truncate">REST API Integration</div>
+                    <div className="text-[10px] text-gray-500 truncate">Connect GET/POST endpoints...</div>
+                  </div>
+               </div>
+               <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl cursor-pointer transition-colors">
+                  <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-500 shrink-0"><Split className="w-4 h-4" /></div>
+                  <div className="flex-1 overflow-hidden">
+                    <div className="text-sm font-semibold text-gray-900 truncate">If-Else Branching</div>
+                    <div className="text-[10px] text-gray-500 truncate">Intelligent conditional logic...</div>
+                  </div>
+               </div>
+            </motion.div>
+
+            {/* Main Floating Chat/Agent Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="absolute top-20 right-0 lg:right-[-20px] w-full max-w-[380px] bg-white/80 backdrop-blur-xl rounded-3xl shadow-[0_30px_60px_-15px_rgba(234,88,12,0.3)] border-[3px] border-white p-6 z-20 flex flex-col"
+            >
+              <div className="flex flex-col gap-3 mb-6 relative w-full">
+                 <div className="absolute inset-0 bg-gradient-to-b from-orange-100/50 to-red-50/20 -m-6 rounded-t-3xl -z-10" />
+                 
+                 <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.2 }} className="flex justify-end w-full">
+                    <div className="bg-white text-gray-700 border border-gray-100 rounded-2xl px-4 py-3 text-xs md:text-sm shadow-sm w-fit max-w-[85%] text-left whitespace-normal break-words overflow-hidden">
+                      Check if the user email exists in the database.
+                    </div>
+                 </motion.div>
+                 
+                 <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.6 }} className="flex justify-end w-full">
+                    <div className="bg-white text-gray-700 border border-gray-100 rounded-2xl px-4 py-3 text-xs md:text-sm shadow-sm w-fit max-w-[85%] text-left whitespace-normal break-words overflow-hidden">
+                      If yes, fetch their profile via the CRM API.
+                    </div>
+                 </motion.div>
+                 
+                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.2 }} className="mt-6 w-full">
+                    <div className="bg-gradient-to-r from-orange-100 via-white to-orange-50 rounded-2xl p-1 relative overflow-hidden shadow-sm w-full">
+                        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 via-red-500/5 to-orange-500/10 animate-[pulse_2s_ease-in-out_infinite]" />
+                        <div className="bg-white rounded-xl px-4 py-3.5 flex items-center justify-between relative z-10 border border-orange-100/50">
+                            <div className="flex items-center gap-3 overflow-hidden">
+                                <Sparkles className="text-[#FF4500] w-5 h-5 fill-[#FF4500]/20 shrink-0" />
+                                <span className="text-gray-800 font-medium text-sm truncate">Executing workflow...</span>
+                            </div>
+                            <Send className="w-4 h-4 text-orange-400 rotate-45 shrink-0" />
+                        </div>
+                    </div>
+                 </motion.div>
+              </div>
+
+              <div className="pt-6 border-t border-gray-100 bg-white w-full">
+                 <h3 className="font-semibold text-gray-900 text-[17px]">Workflow Engine</h3>
+                 <p className="text-gray-500 text-[13px] mt-2 leading-relaxed whitespace-normal break-words">
+                    Executes complex multi-step workflows autonomously, handling dynamic API calls and conditional if-else branch logic.
+                 </p>
+              </div>
+            </motion.div>
+
+          </div>
         </motion.div>
-        
-        <HeroVisualization />
       </section>
 
-    
+      {/* THE REST OF YOUR EXISTING PAGE */}
       <section className="py-10 border-y border-gray-200 bg-gray-50/50">
         <div className="max-w-7xl mx-auto overflow-hidden relative">
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
@@ -178,21 +265,16 @@ const LandingPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
             
-            
             <SpotlightCard className="md:col-span-2 row-span-2 bg-gradient-to-br from-gray-50 to-white">
               <div className="h-full flex flex-col relative overflow-hidden">
                
                 <div className="absolute top-0 left-0 right-0 p-8 z-20 bg-gradient-to-b from-white/90 to-transparent pointer-events-none">
                    <div className="flex items-center gap-3 mb-2">
-                      {/* <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/30">
-                        <Workflow className="w-5 h-5 text-blue-400" />
-                      </div> */}
                       <h3 className="text-2xl font-semibold text-gray-900">Visual Workflow Builder</h3>
                    </div>
                    <p className="text-gray-600 max-w-sm">Connect custom API nodes, AI agents, and logic gates visually. Use live data from any API (Weather, Stock, etc.) instantly.</p>
                 </div>
 
-               
                 <div className="absolute inset-0 top-0 overflow-hidden flex items-center justify-center">
                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:20px_20px]" />
                    
@@ -300,72 +382,72 @@ const LandingPage = () => {
                        </div>
                        
                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: 0.5 }}
+                         initial={{ opacity: 0 }}
+                         whileInView={{ opacity: 1 }}
+                         transition={{ delay: 0.5 }}
                        >
                          <span className="text-purple-400">const</span> res = <span className="text-purple-400">await</span> <span className="text-blue-400">fetch</span>(
                          <span className="text-green-400">&apos;https://agentflow.com/api/agent-chat&apos;</span>, {'{'}
                        </motion.div>
 
                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: 1 }}
-                          className="pl-2"
+                         initial={{ opacity: 0 }}
+                         whileInView={{ opacity: 1 }}
+                         transition={{ delay: 1 }}
+                         className="pl-2"
                        >
                          method: <span className="text-green-400">&apos;POST&apos;</span>,
                        </motion.div>
 
                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: 1.2 }}
-                          className="pl-2"
+                         initial={{ opacity: 0 }}
+                         whileInView={{ opacity: 1 }}
+                         transition={{ delay: 1.2 }}
+                         className="pl-2"
                        >
                          headers: {'{'}<span className="text-green-400">&apos;Content-Type&apos;</span>: <span className="text-green-400">&apos;application/json&apos;</span>{'}'},
                        </motion.div>
 
                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: 1.4 }}
-                          className="pl-2"
+                         initial={{ opacity: 0 }}
+                         whileInView={{ opacity: 1 }}
+                         transition={{ delay: 1.4 }}
+                         className="pl-2"
                        >
                          body: JSON.<span className="text-blue-400">stringify</span>({'{'}
                        </motion.div>
 
                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: 1.6 }}
-                          className="pl-4 text-orange-300"
+                         initial={{ opacity: 0 }}
+                         whileInView={{ opacity: 1 }}
+                         transition={{ delay: 1.6 }}
+                         className="pl-4 text-orange-300"
                        >
                          agentId: &lt;agentId&gt;,
                        </motion.div>
                        
                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: 1.8 }}
-                          className="pl-4 text-orange-300"
+                         initial={{ opacity: 0 }}
+                         whileInView={{ opacity: 1 }}
+                         transition={{ delay: 1.8 }}
+                         className="pl-4 text-orange-300"
                        >
                          userInput: &lt;input&gt;
                        </motion.div>
 
                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: 2.0 }}
-                          className="pl-2"
+                         initial={{ opacity: 0 }}
+                         whileInView={{ opacity: 1 }}
+                         transition={{ delay: 2.0 }}
+                         className="pl-2"
                        >
                          {'}'})
                        </motion.div>
 
                        <motion.div 
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: 2.2 }}
+                         initial={{ opacity: 0 }}
+                         whileInView={{ opacity: 1 }}
+                         transition={{ delay: 2.2 }}
                        >
                          {'}'})
                        </motion.div>
@@ -376,20 +458,20 @@ const LandingPage = () => {
                        
                     
                        <motion.div 
-                          initial={{ opacity: 0, x: 20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 2.5 }}
-                          className="bg-blue-600/20 border border-blue-500/30 text-blue-100 p-2 rounded-lg rounded-br-none text-[10px] md:text-xs self-end max-w-[90%]"
+                         initial={{ opacity: 0, x: 20 }}
+                         whileInView={{ opacity: 1, x: 0 }}
+                         transition={{ delay: 2.5 }}
+                         className="bg-blue-600/20 border border-blue-500/30 text-blue-100 p-2 rounded-lg rounded-br-none text-[10px] md:text-xs self-end max-w-[90%]"
                        >
                           Get the weather for delhi
                        </motion.div>
 
                    
                        <motion.div 
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 3.2 }}
-                          className="bg-white/5 border border-white/10 text-gray-300 p-2 rounded-lg rounded-bl-none text-[10px] md:text-xs self-start max-w-[90%]"
+                         initial={{ opacity: 0, x: -20 }}
+                         whileInView={{ opacity: 1, x: 0 }}
+                         transition={{ delay: 3.2 }}
+                         className="bg-white/5 border border-white/10 text-gray-300 p-2 rounded-lg rounded-bl-none text-[10px] md:text-xs self-start max-w-[90%]"
                        >
                           The current weather in Delhi is 32°C with clear skies.
                        </motion.div>
@@ -427,13 +509,11 @@ const LandingPage = () => {
 
       
       <footer className="bg-gray-50 border-t border-gray-200 relative flex flex-col items-center overflow-hidden">
-  
-
   <div className="relative w-full pt-20 pb-6 px-6">
     
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
       <h1 className="text-[18vw] font-bold text-gray-900/[0.03] tracking-tighter leading-none whitespace-nowrap">
-        AGentFlow
+        AgentFlow
       </h1>
     </div>
 
@@ -447,8 +527,6 @@ const LandingPage = () => {
     </div>
   )
 }
-
-
 
 const MockNode = ({ x, y, color, icon, title, sub }: { x: number, y: number, color: string, icon: any, title: string, sub: string }) => {
    const colors: Record<string, string> = {
@@ -494,73 +572,5 @@ const MockNode = ({ x, y, color, icon, title, sub }: { x: number, y: number, col
       </motion.div>
    )
 }
-
-
-
-const HeroVisualization = () => {
-  return (
-    <div className="relative max-w-5xl mx-auto h-[400px] mt-12 perspective-[1000px]">
-   
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-100/30 via-transparent to-transparent" />
-      
-    
-      <motion.div 
-        initial={{ rotateX: 20, opacity: 0 }}
-        animate={{ rotateX: 20, opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="relative w-full h-full bg-white border-2 border-gray-200 rounded-xl backdrop-blur-md overflow-hidden shadow-2xl"
-        style={{ transformStyle: 'preserve-3d' }}
-      >
-   
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-      
-        <div className="absolute inset-0 flex items-center justify-center gap-12" style={{ transform: 'translateZ(20px)' }}>
-            <FloatingNode icon={<Play size={20} />} color="bg-yellow-500" label="Start" delay={0} />
-            
-     
-            <div className="w-24 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
-                <motion.div 
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent"
-                    animate={{ x: ['-100%', '100%'] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-                />
-            </div>
-            
-            <FloatingNode icon={<Bot size={20} />} color="bg-blue-500" label="AI Agent" delay={1} />
-            
-            
-            <div className="w-24 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
-                <motion.div 
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500 to-transparent"
-                    animate={{ x: ['-100%', '100%'] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: 'linear', delay: 0.75 }}
-                />
-            </div>
-            
-            <FloatingNode icon={<Server size={20} />} color="bg-green-500" label="API" delay={2} />
-        </div>
-      </motion.div>
-    </div>
-  )
-}
-
-const FloatingNode = ({ icon, color, label, delay }: { icon: any, color: string, label: string, delay: number }) => (
-  <motion.div
-    animate={{ y: [0, -10, 0] }}
-    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
-    className="bg-white border-2 border-gray-200 p-5 rounded-2xl flex flex-col items-center gap-4 shadow-lg hover:shadow-xl transition-shadow relative z-20 w-40"
-  >
-    <div className={`w-12 h-12 ${color} rounded-xl flex items-center justify-center text-white shadow-lg`}>
-      {icon}
-    </div>
-    <div className="flex flex-col items-center gap-1">
-        <span className="text-sm font-semibold text-gray-900">{label}</span>
-        <span className="text-[10px] text-gray-500 font-mono">active</span>
-    </div>
-   
-    <div className={`absolute -inset-8 ${color} opacity-5 blur-2xl -z-10`} />
-  </motion.div>
-)
 
 export default LandingPage
